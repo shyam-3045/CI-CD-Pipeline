@@ -7,6 +7,10 @@ on:
 jobs:
   mongo-init:
     runs-on: ubuntu-latest
+    env:
+      PORT: ${{ secrets.PORT }}
+      MONDO_URL: ${{ secrets.MONDO_URL }}
+
 
     services:
       mongo:
@@ -17,6 +21,8 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+
+
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -37,28 +43,8 @@ jobs:
           npm install
           node seedTodoData.js
 
-  test:
-    runs-on: ubuntu-latest
-    needs: mongo-init
-
-    env:
-      PORT: ${{ secrets.PORT }}
-      MONDO_URL: ${{ secrets.MONDO_URL }}
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18"
-
-      - name: Installing Dependencies
+      - name: Running tests
         working-directory: ./Backend
-        run: npm install
-
-      - name: Running Backend tests
-        working-directory: ./Backend
-        run: npm test 
+        run: npm test
+     
 
