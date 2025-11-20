@@ -1,11 +1,8 @@
-// server/seedTodoData.js
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-// Use your DB URL (fall back to local if needed)
 const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/todolist";
 
-// Schema
 const todoSchema = new mongoose.Schema({
   title: { type: String, required: true },
   description: String,
@@ -22,11 +19,9 @@ async function seedTodos() {
 
     console.log("Connected to MongoDB…");
 
-    // Clear existing data
     await Todo.deleteMany({});
     console.log("Cleared existing todos");
 
-    // Insert your mock data
     const mockTodos = [
       { title: "Complete CI/CD pipeline", description: "Finish GitHub Actions setup for MERN app" },
       { title: "Write unit tests", description: "Add tests for POST, GET, PUT, DELETE routes" },

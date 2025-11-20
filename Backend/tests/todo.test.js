@@ -7,6 +7,7 @@ describe("Simple API tests", () => {
   test("GET /todo should respond with a status code", async () => {
     const res = await request(app).get("/todo");
     expect(res.statusCode).toBeTruthy();
+    console.log(res.body)
   });
 
   test("POST /todo should return 400 when fields are missing", async () => {
@@ -17,7 +18,7 @@ describe("Simple API tests", () => {
   });
 
   afterAll(async () => {
-    await mongoose.connection.close();  // Close DB
+    await mongoose.connection.close();  
   });
 
 });
