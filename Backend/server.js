@@ -38,7 +38,7 @@ app.post("/todo",async(req,res)=>
     const {title,description} = req.body
     if(!title || !description)
     {
-        res.send(400).json({msg:"Parameters Required"})
+        res.status(400).json({msg:"Parameters Required"})
     }
     try {
         const newModel=await todoModel.create({title,description})
@@ -96,7 +96,10 @@ app.delete("/todo/:id",async(req,res)=>
     }
 }
 )
-app.listen(PORT,()=>
-{
-    console.log(`Server is at : http://localhost:${PORT}`)
-})
+if (process.env.NODE_ENV !== "test") {
+  app.listen(PORT, () => {
+    console.log(`Server is at : http://localhost:${PORT}`);
+  });
+}
+
+module.exports=app
