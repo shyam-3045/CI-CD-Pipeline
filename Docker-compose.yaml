@@ -1,0 +1,25 @@
+services:
+  mongo: 
+    image : mongo
+    ports :
+      - "27017:27017"
+
+  backend:
+    build : ./backend
+    container_name: backend
+    env_file:
+      - "./backend/.env.prod"
+    depends_on:
+      - mongo
+    ports:
+      - "3000:3000"
+  
+  frontend:
+    build : ./Frontend/todo-app
+    container_name: frontend
+    env_file:
+      - "./Frontend/todo-app/.env.prod"
+    ports:
+      - "5000:3000"
+    depends_on:
+      - backend
