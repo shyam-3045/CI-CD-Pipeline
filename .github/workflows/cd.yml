@@ -1,0 +1,26 @@
+name: MERN CD
+
+on:
+  push: 
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy via ssh
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.KEY }}
+          script: |
+           cd CI-CD-Pipeline
+           git pull origin main
+           docker compose down
+           docker compose up -d --build
+
+
+
+
