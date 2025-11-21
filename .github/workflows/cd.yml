@@ -18,8 +18,8 @@ jobs:
           script: |
            cd CI-CD-Pipeline
            git pull origin main
-           docker compose down
-           docker compose up -d --build
+           docker-compose down
+           docker-compose up -d --build
 
 
 
