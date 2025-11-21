@@ -97,7 +97,7 @@ app.delete("/todo/:id",async(req,res)=>
 }
 )
 if (process.env.NODE_ENV !== "test") {
-  app.listen(PORT, () => {
+  app.listen(PORT,"0.0.0.0", () => {
     console.log(`Server is at : http://localhost:${PORT}`);
   });
 }
