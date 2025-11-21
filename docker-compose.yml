@@ -5,7 +5,7 @@ services:
       - "27017:27017"
 
   backend:
-    build : ./backend
+    build : ./Backend
     container_name: backend
     env_file:
       - "./Backend/.env.prod"
