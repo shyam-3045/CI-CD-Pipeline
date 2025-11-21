@@ -9,4 +9,6 @@ COPY . .
 
 RUN npm run build
 
-CMD ["npx", "serve", "-s", "dist"]
+EXPOSE 3000
+
+CMD ["npx", "serve", "-s", "dist", "-l", "3000", "--host", "0.0.0.0"]
