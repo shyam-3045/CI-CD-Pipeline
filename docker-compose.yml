@@ -20,6 +20,6 @@ services:
     env_file:
       - "./Frontend/todo-app/.env.prod"
     ports:
-      - "5000:3000"
+      - "3000:3000"
     depends_on:
       - backend
